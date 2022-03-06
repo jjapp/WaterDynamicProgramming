@@ -28,15 +28,17 @@ class PlantRewards:
     Parameters:
         -water_lease: a water lease object
         -field: a field object
-        -temp: a temperature parameter"""
+        -temp: a temperature parameter
+        -crop price: the expected price from the crop"""
 
-    def __init__(self, water_lease, field, temp):
+    def __init__(self, water_lease, field, temp, crop_price):
         self.water_lease = water_lease
         self.field = field
         self.temp = temp
+        self.crop_price = crop_price
 
     def get_reward(self):
-        reward = np.log((self.field.quality * self.water_lease.price)/ self.temp)
+        reward = np.log((self.field.quality * self.crop_price)/self.temp) - self.water_lease.price
         return reward
 
 
